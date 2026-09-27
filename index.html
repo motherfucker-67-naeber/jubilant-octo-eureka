@@ -95,31 +95,45 @@
       justify-content: center;
     }
 
-    /* Анимация применяется только к самой галочке (SVG) */
-    .status-badge svg {
-      width: 56px;
-      height: 56px;
-      stroke: #ffffff;
-      stroke-width: 3.5;
-      fill: none;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      transform-origin: center center;
-      animation: 
-        spinOnly 2s linear infinite,
-        pulseOnly 1s ease-in-out infinite alternate;
-    }
+   /* Увеличенная и более жирная галочка */
+.status-badge svg {
+  width: 68px;
+  height: 68px;
+  stroke: #ffffff;
+  stroke-width: 4.8; /* Толщина линии (можно менять от 4 до 6) */
+  fill: none;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  transform-origin: center center;
+  animation: spinAndSwing 3.5s ease-in-out infinite;
+}
 
-    @keyframes spinOnly {
-      from { rotate: 0deg; }
-      to   { rotate: 360deg; }
-    }
+@keyframes spinAndSwing {
+  /* Фаза 1: Вращение на 360° с уменьшением и возвратом в исходный размер */
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(180deg) scale(0.6);
+  }
+  50% {
+    transform: rotate(360deg) scale(1);
+  }
 
-    @keyframes pulseOnly {
-      from { scale: 1; }
-      to   { scale: 0.65; }
-    }
-
+  /* Фаза 2: Покачивание как маятник на месте */
+  62% {
+    transform: rotate(342deg) scale(1); /* Отклонение влево (-18°) */
+  }
+  75% {
+    transform: rotate(378deg) scale(1); /* Отклонение вправо (+18°) */
+  }
+  88% {
+    transform: rotate(350deg) scale(1); /* Затухающее отклонение влево (-10°) */
+  }
+  100% {
+    transform: rotate(360deg) scale(1); /* Возврат в исходное положение */
+  }
+}
     /* Текстовые поля */
     .field {
       margin-bottom: 16px;
@@ -167,7 +181,7 @@
         
         <div class="status-badge">
           <svg viewBox="0 0 24 24">
-            <polyline points="20 6 9 17 4 12"></polyline>
+            <polyline points="21 5 9 17 3 11"></polyline>
           </svg>
         </div>
       </div>
