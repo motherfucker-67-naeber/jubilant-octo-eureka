@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Учебный макет карточки с QR</title>
+  <title>Кешью</title>
   <style>
     * {
       box-sizing: border-box;
@@ -80,58 +80,54 @@
       image-rendering: pixelated;
     }
 
-    /* Статичный зелёный кружок поверх QR-кода */
-    .status-badge {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 92px;
-      height: 92px;
-      background-color: #26a682;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-   /* Увеличенная и более жирная галочка */
-.status-badge svg {
-  width: 68px;
-  height: 68px;
-  stroke: #ffffff;
-  stroke-width: 4.8; /* Толщина линии (можно менять от 4 до 6) */
-  fill: none;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
-  transform-origin: center center;
-  animation: spinAndSwing 3.5s ease-in-out infinite;
+    /* Статичный бирюзовый кружок */
+.status-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96px;
+  height: 96px;
+  background-color: #31ab8f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
-
-@keyframes spinAndSwing {
-  /* Фаза 1: Вращение на 360° с уменьшением и возвратом в исходный размер */
+/* Стили жирной галочки и привязка анимации */
+.checkmark-svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 14;              /* Точная толщина штриха */
+  stroke-linecap: square;         /* Прямые срезанные края */
+  stroke-linejoin: miter;         /* Чёткий острый угол в вершине */
+  transform-origin: 50% 50%;      /* Вращение строго вокруг геометрического центра */
+  animation: exactTicketCheckmark 2.15s ease-in-out infinite;
+}
+/* Точные фазы: оборот против часовой со сжатием + маятниковое покачивание */
+@keyframes exactTicketCheckmark {
+  /* 0% — 56%: Полный оборот против часовой стрелки (0° -> -360°) со сжатием */
   0% {
     transform: rotate(0deg) scale(1);
   }
-  25% {
-    transform: rotate(180deg) scale(0.6);
+  28% {
+    transform: rotate(-180deg) scale(0.45); /* Максимальное сжатие в перевёрнутом виде */
   }
-  50% {
-    transform: rotate(360deg) scale(1);
+  56% {
+    transform: rotate(-360deg) scale(0.88); /* Завершение оборота */
   }
-
-  /* Фаза 2: Покачивание как маятник на месте */
-  62% {
-    transform: rotate(342deg) scale(1); /* Отклонение влево (-18°) */
+  /* 56% — 100%: Маятниковое раскачивание и окончательный возврат к scale(1) */
+  72% {
+    transform: rotate(-322deg) scale(1);   /* Отклонение вправо на ~38° */
   }
-  75% {
-    transform: rotate(378deg) scale(1); /* Отклонение вправо (+18°) */
-  }
-  88% {
-    transform: rotate(350deg) scale(1); /* Затухающее отклонение влево (-10°) */
+  86% {
+    transform: rotate(-374deg) scale(1);   /* Откат влево на ~14° */
   }
   100% {
-    transform: rotate(360deg) scale(1); /* Возврат в исходное положение */
+    transform: rotate(-360deg) scale(1);   /* Фиксация в ровном положении */
   }
 }
     /* Текстовые поля */
