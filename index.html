@@ -114,20 +114,20 @@
     transform: rotate(0deg) scale(1);
   }
   28% {
-    transform: rotate(-180deg) scale(0.45); /* Максимальное сжатие в перевёрнутом виде */
+    transform: rotate(180deg) scale(0.45); /* Максимальное сжатие в перевёрнутом виде */
   }
   56% {
-    transform: rotate(-360deg) scale(0.88); /* Завершение оборота */
+    transform: rotate(360deg) scale(0.88); /* Завершение оборота */
   }
   /* 56% — 100%: Маятниковое раскачивание и окончательный возврат к scale(1) */
   72% {
-    transform: rotate(-322deg) scale(1);   /* Отклонение вправо на ~38° */
+    transform: rotate(374deg) scale(1); /* Откат влево на ~14° */
   }
   86% {
-    transform: rotate(-374deg) scale(1);   /* Откат влево на ~14° */
+      transform: rotate(322deg) scale(1); /* Отклонение вправо на ~38° */
   }
   100% {
-    transform: rotate(-360deg) scale(1);   /* Фиксация в ровном положении */
+    transform: rotate(360deg) scale(1);   /* Фиксация в ровном положении */
   }
 }
     /* Текстовые поля */
